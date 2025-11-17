@@ -7,5 +7,9 @@
 
             <x-forms.button>Log in</x-forms.button>
         </x-forms.form>
+        <x-forms.divider />
+        <p class="text-white">Don't have an account? <a href="/register" class="text-blue-500">Register</a></p>
+        <p class="text-white">Forgot your password? <a href="/forgot-password" class="text-blue-500">Reset Password</a>
+        </p>
     </section>
 </x-layout>

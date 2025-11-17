@@ -1,5 +1,5 @@
 <x-forms.form id="chirp" method="POST" action="/chirp-create" enctype="multipart/form-data">
-    <x-forms.textArea required name="message" label="" placeholder="Today I rode a bike..." />
+    <x-forms.textArea required name="message" label="" placeholder="Today I rode a bike..." rows="5" />
     <div class="pt-3 mx-auto flex max-w-2xl justify-between items-center flex-wrap gap-4">
         <x-forms.input
             class="file:bg-violet file:border-violet/10 text-white file:mr-4 file:rounded-xl file:px-2 file:py-1 p-2!"

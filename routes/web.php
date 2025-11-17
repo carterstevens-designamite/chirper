@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ChirpController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
+    Route::get('dashboard', [ChirpController::class, 'dashboard'])->name('dashboard');
+
     Route::get('edit', [RegisteredUserController::class, 'edit'])->name('edit');
     Route::patch('edit', [RegisteredUserController::class, 'update'])->name('update');
     Route::delete('destroy', [RegisteredUserController::class, 'destroy'])->name('destroy');
@@ -15,12 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::get('chirp-create', [ChirpController::class, 'create'])->name('chirp-create');
     Route::post('chirp-create', [ChirpController::class, 'store'])->name('chirp-create');
 
-    // Need to create
-    // Route::get('dashboard');
-    // Route::get('chirp/{id}');
-    // Route::get('chirp/{id}/edit');
-    // Route::patch('chirp/{id});
-    // Route::delete('chirp/{id});
+    Route::get('chirp/{chirp}/edit', [ChirpController::class, 'edit'])->name('chirp.edit');
+    Route::patch('chirp/{chirp}/edit', [ChirpController::class, 'update'])->name('chirp.update');
+    Route::delete('chirp/{chirp}/destroy', [ChirpController::class, 'destroy'])->name('chirp.destroy');
 
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 });

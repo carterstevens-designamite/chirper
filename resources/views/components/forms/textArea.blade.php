@@ -1,14 +1,11 @@
-@props([
-    'label',
-    'name',
-])
+@props(['label', 'name'])
 
 @php
     $defaults = [
         'type' => 'text',
         'id' => $name,
         'name' => $name,
-        'class' => 'w-full rounded-xl border border-white/10 bg-white/10 px-5 py-4',
+        'class' => 'w-full rounded-xl border border-white/10 bg-white/10 px-5 py-4 text-white',
         'value' => old($name),
     ];
 @endphp

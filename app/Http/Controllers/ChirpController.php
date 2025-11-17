@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Chirp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ChirpController extends Controller
 {
@@ -16,6 +18,19 @@ class ChirpController extends Controller
         $chirps = Chirp::latest()->with('user:id,logo,name')->get();
 
         return view('welcome', ['chirps' => $chirps]);
+    }
+
+    /**
+     * Display the user's dashboard with their own chirps.
+     */
+    public function dashboard()
+    {
+        $chirps = Chirp::where('user_id', Auth::id())
+            ->latest()
+            ->with('user:id,logo,name')
+            ->get();
+
+        return view('dashboard', ['chirps' => $chirps]);
     }
 
     /**
@@ -60,7 +75,7 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        //
+        return view('chirpAuth.edit', ['chirp' => $chirp]);
     }
 
     /**
@@ -68,7 +83,21 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
-        //
+
+        $chripAtrributes = $request->validate([
+            'message' => ['required'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg,gif', 'max:2048'],
+        ]);
+        $chripAtrributes['message'] = preg_replace('/(\r\n|\n|\r){2,}/', "\n", $chripAtrributes['message']);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->image->store('chirp-images');
+            $chripAtrributes['image'] = $imagePath;
+        }
+
+        $chirp->update($chripAtrributes);
+
+        return Redirect::back()->with('success', 'Chirp updated successfully');
     }
 
     /**
@@ -76,6 +105,11 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp)
     {
-        //
+        $chirp->delete();
+        if (Storage::exists($chirp->image)) {
+            Storage::delete($chirp->image);
+        }
+
+        return redirect()->route('dashboard');
     }
 }
