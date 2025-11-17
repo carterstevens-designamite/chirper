@@ -25,3 +25,4 @@ Thumbs.db
 *.lock
 composer.lock
 package-lock.json
+storage/debugbar
