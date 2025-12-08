@@ -3,18 +3,20 @@
 @foreach ($chirps as $chirp)
     <div
         class="mb-5 text-[13px] leading-5 flex-1 bg-white dark:bg-lightGrey dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-lg relative">
-        @if (Auth::user()->id === $chirp->user_id && $showEdit)
-            <div class="absolute top-4 right-4">
-                <a href="{{ route('chirp.edit', $chirp->id) }}" class="text-white hover:text-gray-300 transition-colors"
-                    title="Edit Chirp">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                        </path>
-                    </svg>
-                </a>
-            </div>
+        @if ($showEdit)
+        @can( 'update', $chirp)
+        <div class="absolute top-4 right-4">
+            <a href="{{ route('chirp.edit', $chirp->id) }}" class="text-white hover:text-gray-300 transition-colors"
+                title="Edit Chirp">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        @endcan
         @endif
         <div class="p-8 lg:p-10 lg:pb-8">
             @foreach (preg_split('/\n+/', $chirp->message) as $message)
