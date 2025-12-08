@@ -30,7 +30,9 @@ class Chirp extends Model
     // protected $hidden = [
     //     'user_id',
     // ];
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\User, $this>
+     */
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');

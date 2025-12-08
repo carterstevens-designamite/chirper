@@ -36,7 +36,9 @@ class ChirpController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {}
+    public function create()
+    {
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -50,7 +52,7 @@ class ChirpController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg,gif', 'max:2048'],
         ]);
 
-        $chripAtrributes['message'] = preg_replace('/(\r\n|\n|\r){2,}/', "\n", $chripAtrributes['message']);
+        $chripAtrributes['message'] = preg_replace('/(\r\n|\n|\r){2,}/', "\n", (string) $chripAtrributes['message']);
 
         if ($request->hasFile('image')) {
             $imagePath = $request->image->store('chirp-images');
@@ -88,7 +90,7 @@ class ChirpController extends Controller
             'message' => ['required'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg,gif', 'max:2048'],
         ]);
-        $chripAtrributes['message'] = preg_replace('/(\r\n|\n|\r){2,}/', "\n", $chripAtrributes['message']);
+        $chripAtrributes['message'] = preg_replace('/(\r\n|\n|\r){2,}/', "\n", (string) $chripAtrributes['message']);
 
         if ($request->hasFile('image')) {
             $imagePath = $request->image->store('chirp-images');
@@ -106,7 +108,7 @@ class ChirpController extends Controller
     public function destroy(Chirp $chirp)
     {
         $chirp->delete();
-        if (Storage::exists($chirp->image)) {
+        if ($chirp->image !== null) {
             Storage::delete($chirp->image);
         }
 

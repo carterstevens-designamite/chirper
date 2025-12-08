@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $userAtrributes = $request->validate([
-            'logo' => ['nullable', 'image',  File::types(['png', 'jpeg', 'jpg', 'webp']), 'max:2048'],
+            'logo' => ['nullable', 'image', File::types(['png', 'jpeg', 'jpg', 'webp']), 'max:2048'],
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(8)],
@@ -87,16 +87,16 @@ class RegisteredUserController extends Controller
         if ($request->hasFile('logo')) {
             $logoPath = $request->logo->store('user-images');
             $updatedAttributes['logo'] = $logoPath;
-            $returnMessage = $returnMessage.' and profile picture updated successfully.';
+            $returnMessage .= ' and profile picture updated successfully.';
 
         }
         if ($request->current_password !== null) {
             // Check current password
-            if (! Hash::check($request->current_password, $user->password)) {
+            if (!Hash::check($request->current_password, $user->password)) {
                 return Redirect::back()->withErrors(['current_password' => 'Current password is incorrect.']);
             }
             $updatedAttributes['password'] = Hash::make($request->password);
-            $returnMessage = $returnMessage.' and password updated successfully.';
+            $returnMessage .= ' and password updated successfully.';
         }
         $user->update($updatedAttributes);
 

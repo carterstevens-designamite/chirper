@@ -48,6 +48,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Chirp, $this>
+     */
     public function chirps(): HasMany
     {
         return $this->hasMany(Chirp::class);
