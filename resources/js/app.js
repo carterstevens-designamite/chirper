@@ -10,12 +10,9 @@ function updateCursorPositionv2(e) {
 // Add event listeners
 document.addEventListener('mousemove', updateCursorPositionv2);
 
-
 // Initialize position
 spotlightContainer.style.setProperty('--mouse-x', '10%');
 spotlightContainer.style.setProperty('--mouse-y', '10%');
-
-
 
 // Modal JS
 
@@ -34,4 +31,3 @@ window.addEventListener('click', function (event) {
         dialog.close();
     }
 });
-

@@ -1,18 +1,19 @@
 <x-layout>
-    <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+    <header class="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl">
         <x-navigation.navigation />
     </header>
     <div
-        class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-        <main class="justify-center flex w-full flex-col-reverse lg:max-w-3xl lg:flex-row">
+        class="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0"
+    >
+        <main class="flex w-full flex-col-reverse justify-center lg:max-w-3xl lg:flex-row">
             <section class="w-full">
-                <h1 class="text-white text-2xl mb-6">My Chirps</h1>
+                <h1 class="mb-6 text-2xl text-white">My Chirps</h1>
                 <x-chirpBlock :chirps="$chirps" :showEdit="true" />
             </section>
         </main>
     </div>
 
     @if (Route::has('login'))
-        <div class="h-14.5 hidden lg:block"></div>
+        <div class="hidden h-14.5 lg:block"></div>
     @endif
 </x-layout>

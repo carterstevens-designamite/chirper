@@ -1,4 +1,7 @@
-@props(['label', 'name'])
+@props([
+    'label',
+    'name',
+])
 
 <div>
     @if ($label)

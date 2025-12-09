@@ -1,11 +1,13 @@
-@props(['label', 'name'])
+@props([
+    'label',
+    'name',
+])
 
 @php
     $defaults = [
         'id' => $name,
         'name' => $name,
-        'class' =>
-            'appearance-none rounded-xl bg-[#424242] border border-white/10 px-5 py-4 w-full text-white border-gray-600 focus:ring-blue-500 focus:border-blue-500',
+        'class' => 'w-full appearance-none rounded-xl border border-gray-600 border-white/10 bg-[#424242] px-5 py-4 text-white focus:border-blue-500 focus:ring-blue-500',
     ];
 @endphp
 

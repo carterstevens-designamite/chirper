@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "./theme.css";
-@import "./utilities.css";
+@import 'tailwindcss';
+@import './theme.css';
+@import './utilities.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -21,7 +21,9 @@
 dialog {
     opacity: 0;
     transform: scale(0);
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    transition:
+        opacity 0.3s ease-out,
+        transform 0.3s ease-out;
 }
 
 dialog[open] {
