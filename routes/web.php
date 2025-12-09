@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\ChirpLikesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Models\Chirp;
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function (): void {
 
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 });
+Route::post('chirp/{chirp}/like', [ChirpLikesController::class, 'store'])->name('chirp.like');
+Route::delete('chirp/{chirp}/like', [ChirpLikesController::class, 'destroy'])->name('chirp.unlike');
 
 Route::middleware('guest')->group(function (): void {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');

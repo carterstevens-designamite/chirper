@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Chirp extends Model
@@ -53,5 +54,10 @@ class Chirp extends Model
         }
 
         return round($minutes, 0) . 'm';
+    }
+
+    public function usersLiked(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'likes');
     }
 }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\{Auth, Redirect, Storage};
 
 class ChirpController extends Controller
 {
@@ -16,8 +14,9 @@ class ChirpController extends Controller
     public function index()
     {
         $chirps = Chirp::latest()->with('user:id,logo,name')->get();
+        $likedIds = Auth::user()?->likedChirps->pluck('id')->toArray() ?? [];
 
-        return view('welcome', ['chirps' => $chirps]);
+        return view('welcome', compact('chirps', 'likedIds'));
     }
 
     /**
@@ -29,8 +28,9 @@ class ChirpController extends Controller
             ->latest()
             ->with('user:id,logo,name')
             ->get();
+        $likedIds = Auth::user()?->likedChirps->pluck('id')->toArray() ?? [];
 
-        return view('dashboard', ['chirps' => $chirps]);
+        return view('dashboard', compact('chirps', 'likedIds'));
     }
 
     /**

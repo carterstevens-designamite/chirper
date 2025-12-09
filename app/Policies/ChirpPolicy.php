@@ -2,10 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Chirp;
-use App\Models\User;
-use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
+use App\Models\{Chirp, User};
 
 class ChirpPolicy
 {

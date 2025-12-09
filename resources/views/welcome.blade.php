@@ -12,7 +12,7 @@
                 >
                     <x-chirpForm />
                 </div>
-                <x-chirpBlock :chirps="$chirps" />
+                <x-chirpBlock :chirps="$chirps" :likedIds="$likedIds" />
             </section>
         </main>
     </div>

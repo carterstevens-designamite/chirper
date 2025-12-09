@@ -8,7 +8,7 @@
         <main class="flex w-full flex-col-reverse justify-center lg:max-w-3xl lg:flex-row">
             <section class="w-full">
                 <h1 class="mb-6 text-2xl text-white">My Chirps</h1>
-                <x-chirpBlock :chirps="$chirps" :showEdit="true" />
+                <x-chirpBlock :chirps="$chirps" :showEdit="true" :likedIds="$likedIds" />
             </section>
         </main>
     </div>
