@@ -31,7 +31,7 @@ test('the user cannot like a chirp if not authenticated', function () {
     ]);
 });
 
-test('the like counbt is incremented when a user likes a chirp', function () {
+test('the like count is incremented when a user likes a chirp', function () {
     $user = User::factory()->create();
     $chirp = Chirp::factory()->create();
     $response = $this->actingAs($user)->post('/chirp/' . $chirp->id . '/like');
