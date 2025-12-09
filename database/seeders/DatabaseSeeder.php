@@ -17,11 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        Chirp::factory(10)->create();
+        Chirp::factory(20)->create();
 
-        User::factory()->create([
+
+        $admin = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Chirp::factory(10)
+            ->recycle($admin)
+            ->create();
     }
 }
