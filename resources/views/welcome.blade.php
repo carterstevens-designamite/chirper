@@ -10,9 +10,9 @@
                 <div
                     class="dark:bg-lightGrey mb-5 flex-1 rounded-lg bg-white p-4 text-[13px] leading-5 shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
                 >
-                    <x-chirpForm />
+                    <x-chirps.chirpForm />
                 </div>
-                <x-chirpBlock :chirps="$chirps" :likedIds="$likedIds" />
+                <x-chirps.chirpBlock :chirps="$chirps" :likedIds="$likedIds" />
             </section>
         </main>
     </div>
