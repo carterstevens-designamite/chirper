@@ -17,7 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        Chirp::factory(20)->create();
+        Chirp::factory(20)->create([
+            'user_id' => User::factory(),
+            'message' => fake()->sentence(),
+            'image' => null,
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
+        ]);
 
 
         $admin = User::factory()->create([

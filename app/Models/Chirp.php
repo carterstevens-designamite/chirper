@@ -43,12 +43,15 @@ class Chirp extends Model
     public function getTimeDiffAttribute()
     {
         $minutes = Carbon::parse($this->created_at)->diffInMinutes(now());
-        if ($minutes > 1440) {
-            return round($minutes / 1440, 0).'d';
+        // If over 365 days, return year
+        if ($minutes > 525600) {
+            return round($minutes / 525600, 0) . 'y';
+        } elseif ($minutes > 1440) {
+            return round($minutes / 1440, 0) . 'd';
         } elseif ($minutes > 60) {
-            return round($minutes / 60, 0).'h';
+            return round($minutes / 60, 0) . 'h';
         }
 
-        return round($minutes, 0).'m';
+        return round($minutes, 0) . 'm';
     }
 }
